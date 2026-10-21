@@ -1,0 +1,1276 @@
+/* =========================================================================
+   TITAN PORTAL — PHONE BOTTOM DOCK (PortalDock.css)
+   On screens up to 768px wide the sidebar of all four panels (Super Admin,
+   Sub Admin, Student, Teacher) turns into:
+     - a slim header   (logo + title, round profile avatar on the right)
+     - a floating icon dock at the bottom (icons only, no written labels)
+   Menu groups of the admin panels (Attendance, Trainers) open as a sheet just
+   above the dock. Purely layout/skin - the links, routes and menus themselves
+   are untouched. Selectors start with `body .<panel>-shell` so they always win
+   over the older phone rules, and never leak between panels.
+   ========================================================================= */
+
+/* ---------- SUPERADMIN ---------- */
+
+@media (max-width: 768px) {
+  /* The sidebar box itself folds away; its three parts (logo header, icon dock,
+     profile button) are placed on the screen on their own. */
+
+  body .superadmin-shell .superadmin-sidebar {
+    position: relative;
+    z-index: 40;
+    flex: none;
+    width: 0;
+    min-width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  body .superadmin-shell .superadmin-sidebar::before {
+    display: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar::after {
+    display: none;
+  }
+
+  /* ---------- top header: logo + title (+ profile avatar on the right) ---------- */
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    height: 60px;
+    margin: 0;
+    padding: 0 72px 0 16px;
+    background: linear-gradient(135deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 18px 30px -20px rgba(8, 13, 26, 0.75), inset 0 -1px 0 rgba(232, 196, 104, 0.32);
+    animation: pmHeaderIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-fold-btn {
+    display: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-logo-wrap {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-top::after {
+    content: 'Titan Portal';
+    font-family: 'Fraunces', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: #ffffff;
+  }
+
+  /* ---------- profile = round avatar at the top right ---------- */
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-profile-wrap {
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    z-index: 45;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-profile {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background: none;
+    box-shadow: 0 0 0 2px rgba(232, 196, 104, 0.9), 0 10px 16px -8px rgba(0, 0, 0, 0.7);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-profile:hover {
+    transform: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-name {
+    display: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-menu {
+    top: calc(100% + 12px);
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: 190px;
+    z-index: 60;
+  }
+
+  /* ---------- bottom icon dock ---------- */
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 4px;
+    height: 66px;
+    margin: 0;
+    padding: 0 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border-radius: 26px;
+    /* soft gold glow on a side only while more icons are hidden off that side */ background: linear-gradient(90deg, #1F3160 30%, rgba(31, 49, 96, 0)) left center / 34px 100% no-repeat local, linear-gradient(270deg, #0B1326 30%, rgba(11, 19, 38, 0)) right center / 34px 100% no-repeat local, radial-gradient(farthest-side at 0 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) left center / 16px 100% no-repeat scroll, radial-gradient(farthest-side at 100% 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) right center / 16px 100% no-repeat scroll, linear-gradient(190deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 26px 46px -14px rgba(5, 9, 20, 0.8), 0 0 0 1px rgba(232, 196, 104, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    animation: pmDockIn 0.45s cubic-bezier(0.2, 1.1, 0.4, 1) 0.1s backwards;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item {
+    position: relative;
+    z-index: 42;
+    display: flex;
+    flex: 1 0 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 48px;
+    max-width: 84px;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 17px;
+    background: none;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.74);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transform: none;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item:active {
+    transform: scale(0.9);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item::before {
+    display: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item-active {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item-active:hover {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item .superadmin-nav-icon {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    font-size: 1.15rem;
+    transform: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item:hover .superadmin-nav-icon {
+    background: none;
+    transform: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item-active .superadmin-nav-icon {
+    background: none;
+    box-shadow: none;
+    color: #0F1830;
+  }
+
+  /* no written labels in the dock - kept for screen readers only */
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item .superadmin-nav-label {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* ---------- make room for the header and the dock ---------- */
+
+  body .superadmin-shell .superadmin-shell-main {
+    padding-top: 60px;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@keyframes pmHeaderIn {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pmDockIn {
+  from { opacity: 0; transform: translateY(34px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-top {
+    animation: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-nav {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* sections: the menu groups become single icons, their pages open in a sheet above the dock */
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-nav > .superadmin-nav-group {
+    display: contents;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-item .superadmin-nav-chevron {
+    display: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-group-btn-current {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-group:has(.superadmin-nav-subitem-active) > .superadmin-nav-group-btn {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-divider {
+    display: block;
+    flex: none;
+    width: 1px;
+    height: 28px;
+    margin: 0 6px;
+    padding: 0;
+    border: 0;
+    border-radius: 1px;
+    background: rgba(232, 196, 104, 0.4);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-divider-label {
+    display: none;
+  }
+
+  /* the sheet */
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-nav > .superadmin-nav-group > .superadmin-nav-children {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px) + 66px + 14px);
+    z-index: 41;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 56vh;
+    margin: 0;
+    padding: 10px;
+    overflow-y: auto;
+    border-radius: 22px;
+    background: linear-gradient(190deg, rgba(31, 49, 96, 0.98), rgba(10, 17, 36, 0.98));
+    box-shadow: 0 30px 50px -16px rgba(5, 9, 20, 0.85), 0 0 0 1px rgba(232, 196, 104, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* "backwards" only: a leftover transform would make the sheet trap its own backdrop */ animation: pmSheetIn 0.22s cubic-bezier(0.2, 1.1, 0.4, 1) backwards;
+  }
+
+  /* tapping outside the sheet closes it (handled in the sidebar) */
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-sidebar-nav > .superadmin-nav-group > .superadmin-nav-children::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: rgba(8, 13, 26, 0.4);
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-children .superadmin-nav-children-deep {
+    position: static;
+    max-height: none;
+    padding: 2px 0 2px 14px;
+    overflow: visible;
+    background: none;
+    box-shadow: none;
+    animation: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-children .superadmin-nav-children-deep::before {
+    display: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-subitem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    font-weight: 700;
+    transition: background-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-subitem:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: none;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-subitem-active {
+    background: linear-gradient(135deg, rgba(232, 196, 104, 0.3), rgba(201, 162, 39, 0.12));
+    box-shadow: inset 0 0 0 1px rgba(232, 196, 104, 0.4);
+    color: #F3D77E;
+  }
+
+  body .superadmin-shell .superadmin-sidebar .superadmin-nav-subitem .superadmin-nav-chevron {
+    display: inline-block;
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes pmSheetIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- SUBADMIN ---------- */
+
+@media (max-width: 768px) {
+  /* The sidebar box itself folds away; its three parts (logo header, icon dock,
+     profile button) are placed on the screen on their own. */
+
+  body .subadmin-shell .subadmin-sidebar {
+    position: relative;
+    z-index: 40;
+    flex: none;
+    width: 0;
+    min-width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  body .subadmin-shell .subadmin-sidebar::before {
+    display: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar::after {
+    display: none;
+  }
+
+  /* ---------- top header: logo + title (+ profile avatar on the right) ---------- */
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    height: 60px;
+    margin: 0;
+    padding: 0 72px 0 16px;
+    background: linear-gradient(135deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 18px 30px -20px rgba(8, 13, 26, 0.75), inset 0 -1px 0 rgba(232, 196, 104, 0.32);
+    animation: pmHeaderIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-fold-btn {
+    display: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-logo-wrap {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-top::after {
+    content: 'Titan Portal';
+    font-family: 'Fraunces', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: #ffffff;
+  }
+
+  /* ---------- profile = round avatar at the top right ---------- */
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-profile-wrap {
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    z-index: 45;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-profile {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background: none;
+    box-shadow: 0 0 0 2px rgba(232, 196, 104, 0.9), 0 10px 16px -8px rgba(0, 0, 0, 0.7);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-profile:hover {
+    transform: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-name {
+    display: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-menu {
+    top: calc(100% + 12px);
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: 190px;
+    z-index: 60;
+  }
+
+  /* ---------- bottom icon dock ---------- */
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 4px;
+    height: 66px;
+    margin: 0;
+    padding: 0 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border-radius: 26px;
+    /* soft gold glow on a side only while more icons are hidden off that side */ background: linear-gradient(90deg, #1F3160 30%, rgba(31, 49, 96, 0)) left center / 34px 100% no-repeat local, linear-gradient(270deg, #0B1326 30%, rgba(11, 19, 38, 0)) right center / 34px 100% no-repeat local, radial-gradient(farthest-side at 0 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) left center / 16px 100% no-repeat scroll, radial-gradient(farthest-side at 100% 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) right center / 16px 100% no-repeat scroll, linear-gradient(190deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 26px 46px -14px rgba(5, 9, 20, 0.8), 0 0 0 1px rgba(232, 196, 104, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    animation: pmDockIn 0.45s cubic-bezier(0.2, 1.1, 0.4, 1) 0.1s backwards;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item {
+    position: relative;
+    z-index: 42;
+    display: flex;
+    flex: 1 0 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 48px;
+    max-width: 84px;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 17px;
+    background: none;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.74);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transform: none;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item:active {
+    transform: scale(0.9);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item::before {
+    display: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item-active {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item-active:hover {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item .subadmin-nav-icon {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    font-size: 1.15rem;
+    transform: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item:hover .subadmin-nav-icon {
+    background: none;
+    transform: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item-active .subadmin-nav-icon {
+    background: none;
+    box-shadow: none;
+    color: #0F1830;
+  }
+
+  /* no written labels in the dock - kept for screen readers only */
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item .subadmin-nav-label {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* ---------- make room for the header and the dock ---------- */
+
+  body .subadmin-shell .subadmin-shell-main {
+    padding-top: 60px;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-top {
+    animation: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-nav {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* sections: the menu groups become single icons, their pages open in a sheet above the dock */
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-nav > .subadmin-nav-group {
+    display: contents;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-item .subadmin-nav-chevron {
+    display: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-group-btn-current {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-group:has(.subadmin-nav-subitem-active) > .subadmin-nav-group-btn {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-divider {
+    display: block;
+    flex: none;
+    width: 1px;
+    height: 28px;
+    margin: 0 6px;
+    padding: 0;
+    border: 0;
+    border-radius: 1px;
+    background: rgba(232, 196, 104, 0.4);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-divider-label {
+    display: none;
+  }
+
+  /* the sheet */
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-nav > .subadmin-nav-group > .subadmin-nav-children {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px) + 66px + 14px);
+    z-index: 41;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 56vh;
+    margin: 0;
+    padding: 10px;
+    overflow-y: auto;
+    border-radius: 22px;
+    background: linear-gradient(190deg, rgba(31, 49, 96, 0.98), rgba(10, 17, 36, 0.98));
+    box-shadow: 0 30px 50px -16px rgba(5, 9, 20, 0.85), 0 0 0 1px rgba(232, 196, 104, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* "backwards" only: a leftover transform would make the sheet trap its own backdrop */ animation: pmSheetIn 0.22s cubic-bezier(0.2, 1.1, 0.4, 1) backwards;
+  }
+
+  /* tapping outside the sheet closes it (handled in the sidebar) */
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-sidebar-nav > .subadmin-nav-group > .subadmin-nav-children::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: rgba(8, 13, 26, 0.4);
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-children .subadmin-nav-children-deep {
+    position: static;
+    max-height: none;
+    padding: 2px 0 2px 14px;
+    overflow: visible;
+    background: none;
+    box-shadow: none;
+    animation: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-children .subadmin-nav-children-deep::before {
+    display: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-subitem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    font-weight: 700;
+    transition: background-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-subitem:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: none;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-subitem-active {
+    background: linear-gradient(135deg, rgba(232, 196, 104, 0.3), rgba(201, 162, 39, 0.12));
+    box-shadow: inset 0 0 0 1px rgba(232, 196, 104, 0.4);
+    color: #F3D77E;
+  }
+
+  body .subadmin-shell .subadmin-sidebar .subadmin-nav-subitem .subadmin-nav-chevron {
+    display: inline-block;
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* ---------- STUDENT ---------- */
+
+@media (max-width: 768px) {
+  /* The sidebar box itself folds away; its three parts (logo header, icon dock,
+     profile button) are placed on the screen on their own. */
+
+  body .student-shell .student-sidebar {
+    position: relative;
+    z-index: 40;
+    flex: none;
+    width: 0;
+    min-width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  body .student-shell .student-sidebar::before {
+    display: none;
+  }
+
+  body .student-shell .student-sidebar::after {
+    display: none;
+  }
+
+  /* ---------- top header: logo + title (+ profile avatar on the right) ---------- */
+
+  body .student-shell .student-sidebar .student-sidebar-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    height: 60px;
+    margin: 0;
+    padding: 0 72px 0 16px;
+    background: linear-gradient(135deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 18px 30px -20px rgba(8, 13, 26, 0.75), inset 0 -1px 0 rgba(232, 196, 104, 0.32);
+    animation: pmHeaderIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-fold-btn {
+    display: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-logo-wrap {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-top::after {
+    content: 'Titan Portal';
+    font-family: 'Fraunces', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: #ffffff;
+  }
+
+  /* ---------- profile = round avatar at the top right ---------- */
+
+  body .student-shell .student-sidebar .student-sidebar-profile-wrap {
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    z-index: 45;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-profile {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background: none;
+    box-shadow: 0 0 0 2px rgba(232, 196, 104, 0.9), 0 10px 16px -8px rgba(0, 0, 0, 0.7);
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-profile:hover {
+    transform: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-name {
+    display: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-menu {
+    top: calc(100% + 12px);
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: 190px;
+    z-index: 60;
+  }
+
+  /* ---------- bottom icon dock ---------- */
+
+  body .student-shell .student-sidebar .student-sidebar-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 4px;
+    height: 66px;
+    margin: 0;
+    padding: 0 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border-radius: 26px;
+    /* soft gold glow on a side only while more icons are hidden off that side */ background: linear-gradient(90deg, #1F3160 30%, rgba(31, 49, 96, 0)) left center / 34px 100% no-repeat local, linear-gradient(270deg, #0B1326 30%, rgba(11, 19, 38, 0)) right center / 34px 100% no-repeat local, radial-gradient(farthest-side at 0 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) left center / 16px 100% no-repeat scroll, radial-gradient(farthest-side at 100% 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) right center / 16px 100% no-repeat scroll, linear-gradient(190deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 26px 46px -14px rgba(5, 9, 20, 0.8), 0 0 0 1px rgba(232, 196, 104, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    animation: pmDockIn 0.45s cubic-bezier(0.2, 1.1, 0.4, 1) 0.1s backwards;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item {
+    position: relative;
+    z-index: 42;
+    display: flex;
+    flex: 1 0 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 48px;
+    max-width: 84px;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 17px;
+    background: none;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.74);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transform: none;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item:active {
+    transform: scale(0.9);
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item::before {
+    display: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item-active {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item-active:hover {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item .student-sidebar-nav-icon {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    font-size: 1.15rem;
+    transform: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item:hover .student-sidebar-nav-icon {
+    background: none;
+    transform: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item-active .student-sidebar-nav-icon {
+    background: none;
+    box-shadow: none;
+    color: #0F1830;
+  }
+
+  /* no written labels in the dock - kept for screen readers only */
+
+  body .student-shell .student-sidebar .student-sidebar-nav-item .student-sidebar-nav-label {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* ---------- make room for the header and the dock ---------- */
+
+  body .student-shell .student-shell-main {
+    padding-top: 60px;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .student-shell .student-sidebar .student-sidebar-top {
+    animation: none;
+  }
+
+  body .student-shell .student-sidebar .student-sidebar-nav {
+    animation: none;
+  }
+}
+
+/* ---------- TEACHER ---------- */
+
+@media (max-width: 768px) {
+  /* The sidebar box itself folds away; its three parts (logo header, icon dock,
+     profile button) are placed on the screen on their own. */
+
+  body .teacher-shell .teacher-sidebar {
+    position: relative;
+    z-index: 40;
+    flex: none;
+    width: 0;
+    min-width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  body .teacher-shell .teacher-sidebar::before {
+    display: none;
+  }
+
+  body .teacher-shell .teacher-sidebar::after {
+    display: none;
+  }
+
+  /* ---------- top header: logo + title (+ profile avatar on the right) ---------- */
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    height: 60px;
+    margin: 0;
+    padding: 0 72px 0 16px;
+    background: linear-gradient(135deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 18px 30px -20px rgba(8, 13, 26, 0.75), inset 0 -1px 0 rgba(232, 196, 104, 0.32);
+    animation: pmHeaderIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-fold-btn {
+    display: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-logo-wrap {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-top::after {
+    content: 'Titan Portal';
+    font-family: 'Fraunces', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: #ffffff;
+  }
+
+  /* ---------- profile = round avatar at the top right ---------- */
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-profile-wrap {
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    z-index: 45;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-profile {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background: none;
+    box-shadow: 0 0 0 2px rgba(232, 196, 104, 0.9), 0 10px 16px -8px rgba(0, 0, 0, 0.7);
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-profile:hover {
+    transform: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-name {
+    display: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-menu {
+    top: calc(100% + 12px);
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: 190px;
+    z-index: 60;
+  }
+
+  /* ---------- bottom icon dock ---------- */
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 4px;
+    height: 66px;
+    margin: 0;
+    padding: 0 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border-radius: 26px;
+    /* soft gold glow on a side only while more icons are hidden off that side */ background: linear-gradient(90deg, #1F3160 30%, rgba(31, 49, 96, 0)) left center / 34px 100% no-repeat local, linear-gradient(270deg, #0B1326 30%, rgba(11, 19, 38, 0)) right center / 34px 100% no-repeat local, radial-gradient(farthest-side at 0 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) left center / 16px 100% no-repeat scroll, radial-gradient(farthest-side at 100% 50%, rgba(232, 196, 104, 0.45), rgba(232, 196, 104, 0)) right center / 16px 100% no-repeat scroll, linear-gradient(190deg, #1F3160 0%, #14214A 55%, #0B1326 100%);
+    box-shadow: 0 26px 46px -14px rgba(5, 9, 20, 0.8), 0 0 0 1px rgba(232, 196, 104, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    animation: pmDockIn 0.45s cubic-bezier(0.2, 1.1, 0.4, 1) 0.1s backwards;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item {
+    position: relative;
+    z-index: 42;
+    display: flex;
+    flex: 1 0 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 48px;
+    max-width: 84px;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 17px;
+    background: none;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.74);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transform: none;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item:active {
+    transform: scale(0.9);
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item::before {
+    display: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item-active {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item-active:hover {
+    background: linear-gradient(145deg, #F3D77E, #C9A227);
+    color: #0F1830;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 0 #8A6A10, 0 14px 20px -8px rgba(201, 162, 39, 0.7);
+    transform: translateY(-3px);
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item .teacher-sidebar-nav-icon {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    font-size: 1.15rem;
+    transform: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item:hover .teacher-sidebar-nav-icon {
+    background: none;
+    transform: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item-active .teacher-sidebar-nav-icon {
+    background: none;
+    box-shadow: none;
+    color: #0F1830;
+  }
+
+  /* no written labels in the dock - kept for screen readers only */
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav-item .teacher-sidebar-nav-label {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* ---------- make room for the header and the dock ---------- */
+
+  body .teacher-shell .teacher-shell-main {
+    padding-top: 60px;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-top {
+    animation: none;
+  }
+
+  body .teacher-shell .teacher-sidebar .teacher-sidebar-nav {
+    animation: none;
+  }
+}

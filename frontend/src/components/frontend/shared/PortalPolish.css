@@ -1,0 +1,1148 @@
+/* =========================================================================
+   TITAN PORTAL — SHARED PREMIUM POLISH (PortalPolish.css)
+   Imported by the Super Admin, Sub Admin, Student and Teacher shells (and the
+   student course landing page). Pure look-and-feel, shared by every panel:
+     - soft staggered page-open transition
+     - floating icon tiles
+     - premium gold-to-navy hairline borders on panels and popups
+   Every selector is prefixed with `body` + the panel's own wrapper class, so it
+   always wins over the panel CSS regardless of load order, and never leaks.
+   ========================================================================= */
+
+/* ---------- SHARED KEYFRAMES ---------- */
+
+/* uses the individual `translate` property and "backwards" fill so nothing is
+   left applied afterwards (a leftover transform would trap popups) */
+
+@keyframes pmRise {
+  from { opacity: 0; translate: 0 14px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes pmPop {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pmFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -4px; }
+}
+
+@keyframes pmShimmer {
+  from { background-position: 0% 0; }
+  to { background-position: 200% 0; }
+}
+
+@keyframes pmBlob {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-18px, 14px, 0) rotate(14deg); }
+}
+
+/* ---------- PAGE TRANSITION (every page opens with a soft staggered rise) ---------- */
+
+body .superadmin-page > *:not([class*='overlay']) {
+  animation: pmRise 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+body .subadmin-page > *:not([class*='overlay']) {
+  animation: pmRise 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+body .student-page > *:not([class*='overlay']) {
+  animation: pmRise 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+body .teacher-page > *:not([class*='overlay']) {
+  animation: pmRise 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+body .superadmin-page > *:not([class*='overlay']):nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+body .subadmin-page > *:not([class*='overlay']):nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+body .student-page > *:not([class*='overlay']):nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+body .teacher-page > *:not([class*='overlay']):nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+body .superadmin-page > *:not([class*='overlay']):nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+body .subadmin-page > *:not([class*='overlay']):nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+body .student-page > *:not([class*='overlay']):nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+body .teacher-page > *:not([class*='overlay']):nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+body .superadmin-page > *:not([class*='overlay']):nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+body .subadmin-page > *:not([class*='overlay']):nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+body .student-page > *:not([class*='overlay']):nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+body .teacher-page > *:not([class*='overlay']):nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+body .superadmin-page > *:not([class*='overlay']):nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+body .subadmin-page > *:not([class*='overlay']):nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+body .student-page > *:not([class*='overlay']):nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+body .teacher-page > *:not([class*='overlay']):nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+body .superadmin-page > *:not([class*='overlay']):nth-child(6) {
+  animation-delay: 0.25s;
+}
+
+body .subadmin-page > *:not([class*='overlay']):nth-child(6) {
+  animation-delay: 0.25s;
+}
+
+body .student-page > *:not([class*='overlay']):nth-child(6) {
+  animation-delay: 0.25s;
+}
+
+body .teacher-page > *:not([class*='overlay']):nth-child(6) {
+  animation-delay: 0.25s;
+}
+
+body .superadmin-page > *:not([class*='overlay']):nth-child(n+7) {
+  animation-delay: 0.3s;
+}
+
+body .subadmin-page > *:not([class*='overlay']):nth-child(n+7) {
+  animation-delay: 0.3s;
+}
+
+body .student-page > *:not([class*='overlay']):nth-child(n+7) {
+  animation-delay: 0.3s;
+}
+
+body .teacher-page > *:not([class*='overlay']):nth-child(n+7) {
+  animation-delay: 0.3s;
+}
+
+/* ---------- FLOATING ICON TILES ---------- */
+
+body .superadmin-shell [class*='-stat-icon'] {
+  animation: pmFloat 4.8s ease-in-out infinite;
+}
+
+body .subadmin-shell [class*='-stat-icon'] {
+  animation: pmFloat 4.8s ease-in-out infinite;
+}
+
+body .student-shell [class*='-stat-icon'] {
+  animation: pmFloat 4.8s ease-in-out infinite;
+}
+
+body .course-landing-page [class*='-stat-icon'] {
+  animation: pmFloat 4.8s ease-in-out infinite;
+}
+
+body .teacher-shell [class*='-stat-icon'] {
+  animation: pmFloat 4.8s ease-in-out infinite;
+}
+
+body .superadmin-shell *:nth-child(2) > [class*='-stat-icon'] {
+  animation-delay: -1.2s;
+}
+
+body .subadmin-shell *:nth-child(2) > [class*='-stat-icon'] {
+  animation-delay: -1.2s;
+}
+
+body .student-shell *:nth-child(2) > [class*='-stat-icon'] {
+  animation-delay: -1.2s;
+}
+
+body .course-landing-page *:nth-child(2) > [class*='-stat-icon'] {
+  animation-delay: -1.2s;
+}
+
+body .teacher-shell *:nth-child(2) > [class*='-stat-icon'] {
+  animation-delay: -1.2s;
+}
+
+body .superadmin-shell *:nth-child(3) > [class*='-stat-icon'] {
+  animation-delay: -2.4s;
+}
+
+body .subadmin-shell *:nth-child(3) > [class*='-stat-icon'] {
+  animation-delay: -2.4s;
+}
+
+body .student-shell *:nth-child(3) > [class*='-stat-icon'] {
+  animation-delay: -2.4s;
+}
+
+body .course-landing-page *:nth-child(3) > [class*='-stat-icon'] {
+  animation-delay: -2.4s;
+}
+
+body .teacher-shell *:nth-child(3) > [class*='-stat-icon'] {
+  animation-delay: -2.4s;
+}
+
+body .superadmin-shell *:nth-child(4) > [class*='-stat-icon'] {
+  animation-delay: -3.6s;
+}
+
+body .subadmin-shell *:nth-child(4) > [class*='-stat-icon'] {
+  animation-delay: -3.6s;
+}
+
+body .student-shell *:nth-child(4) > [class*='-stat-icon'] {
+  animation-delay: -3.6s;
+}
+
+body .course-landing-page *:nth-child(4) > [class*='-stat-icon'] {
+  animation-delay: -3.6s;
+}
+
+body .teacher-shell *:nth-child(4) > [class*='-stat-icon'] {
+  animation-delay: -3.6s;
+}
+
+body .superadmin-shell .generic-popup-icon-wrap {
+  animation: pmFloat 4.6s ease-in-out infinite;
+}
+
+body .subadmin-shell .generic-popup-icon-wrap {
+  animation: pmFloat 4.6s ease-in-out infinite;
+}
+
+body .student-shell .generic-popup-icon-wrap {
+  animation: pmFloat 4.6s ease-in-out infinite;
+}
+
+body .course-landing-page .generic-popup-icon-wrap {
+  animation: pmFloat 4.6s ease-in-out infinite;
+}
+
+body .teacher-shell .generic-popup-icon-wrap {
+  animation: pmFloat 4.6s ease-in-out infinite;
+}
+
+/* ---------- PREMIUM GRADIENT HAIRLINE BORDERS ----------
+   A 1.5px border that shimmers from gold to a cool navy hairline and back to
+   gold - drawn with two stacked backgrounds, so it follows the rounded corners
+   and costs nothing at runtime. */
+
+body .superadmin-shell .attendance-overview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .attendance-overview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .attendance-overview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .attendance-overview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .attendance-overview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .attendance-detail-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .attendance-detail-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .attendance-detail-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .attendance-detail-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .attendance-detail-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .assignment-list-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .assignment-list-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .assignment-list-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .assignment-list-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .assignment-list-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .quiz-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .quiz-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .quiz-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .quiz-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .quiz-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .fee-challan-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .fee-challan-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .fee-challan-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .fee-challan-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .fee-challan-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .fee-history-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .fee-history-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .fee-history-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .fee-history-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .fee-history-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .progress-module-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .progress-module-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .progress-module-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .progress-module-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .progress-module-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .course-tab-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .course-tab-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .course-tab-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .course-tab-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .course-tab-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .calendar-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .calendar-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .calendar-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .calendar-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .calendar-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .profile-info-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .profile-info-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .profile-info-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .profile-info-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .profile-info-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .dashboard-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .dashboard-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .dashboard-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .dashboard-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .dashboard-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .dashboard-active-course-right {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .dashboard-active-course-right {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .dashboard-active-course-right {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .dashboard-active-course-right {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .dashboard-active-course-right {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .teacher-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .teacher-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .teacher-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .teacher-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .teacher-schedule-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .student-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .student-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .student-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .student-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .student-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .students-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .students-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .students-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .students-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .students-table-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .superadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .superadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .superadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .superadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .superadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .subadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .subadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .subadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .subadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .subadmin-chart-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .superadmin-campus-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .superadmin-campus-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .superadmin-campus-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .superadmin-campus-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .superadmin-campus-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .superadmin-subadmin-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .superadmin-subadmin-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .superadmin-subadmin-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .superadmin-subadmin-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .superadmin-subadmin-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .updation-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .updation-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .updation-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .updation-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .updation-form-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .attendance-mark-search-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .attendance-mark-search-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .attendance-mark-search-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .attendance-mark-search-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .attendance-mark-search-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .attendance-mark-preview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .subadmin-shell .attendance-mark-preview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .student-shell .attendance-mark-preview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .course-landing-page .attendance-mark-preview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .teacher-shell .attendance-mark-preview-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(#ffffff, #FCFAF4) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.9) 0%, rgba(27, 42, 77, 0.1) 38%, rgba(27, 42, 77, 0.06) 62%, rgba(201, 162, 39, 0.7) 100%) border-box;
+}
+
+body .superadmin-shell .course-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .subadmin-shell .course-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .student-shell .course-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .course-landing-page .course-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .teacher-shell .course-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .superadmin-shell .payment-instructions-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .subadmin-shell .payment-instructions-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .student-shell .payment-instructions-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .course-landing-page .payment-instructions-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .teacher-shell .payment-instructions-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .superadmin-shell .quiz-info-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .subadmin-shell .quiz-info-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .student-shell .quiz-info-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .course-landing-page .quiz-info-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+body .teacher-shell .quiz-info-box {
+  border: 1.5px solid transparent;
+  background: linear-gradient(160deg, #FBF4DB 0%, #FFFFFF 58%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.1) 40%, rgba(201, 162, 39, 0.75) 100%) border-box;
+}
+
+/* popups get the same hairline, a little richer */
+
+body .superadmin-shell .generic-popup-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .generic-popup-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .generic-popup-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .generic-popup-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .generic-popup-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .superadmin-shell .assignment-submit-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .assignment-submit-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .assignment-submit-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .assignment-submit-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .assignment-submit-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .superadmin-shell .assignment-view-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .assignment-view-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .assignment-view-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .assignment-view-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .assignment-view-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .superadmin-shell .edit-profile-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .edit-profile-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .edit-profile-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .edit-profile-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .edit-profile-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .superadmin-shell .submissions-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .submissions-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .submissions-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .submissions-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .submissions-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .superadmin-shell .quiz-builder-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .quiz-builder-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .quiz-builder-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .quiz-builder-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .quiz-builder-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .superadmin-shell .student-detail-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .student-detail-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .student-detail-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .student-detail-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .student-detail-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .superadmin-shell .compare-progress-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .subadmin-shell .compare-progress-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .student-shell .compare-progress-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .course-landing-page .compare-progress-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+body .teacher-shell .compare-progress-card {
+  border: 1.5px solid transparent;
+  background: linear-gradient(180deg, #FFFDF6 0%, #FFFFFF 42%) padding-box, linear-gradient(135deg, rgba(232, 196, 104, 0.95) 0%, rgba(27, 42, 77, 0.12) 45%, rgba(201, 162, 39, 0.8) 100%) border-box;
+}
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body .superadmin-page > * {
+    animation: none;
+  }
+
+  body .subadmin-page > * {
+    animation: none;
+  }
+
+  body .student-page > * {
+    animation: none;
+  }
+
+  body .teacher-page > * {
+    animation: none;
+  }
+
+  body .superadmin-shell [class*='-stat-icon'] {
+    animation: none;
+  }
+
+  body .subadmin-shell [class*='-stat-icon'] {
+    animation: none;
+  }
+
+  body .student-shell [class*='-stat-icon'] {
+    animation: none;
+  }
+
+  body .course-landing-page [class*='-stat-icon'] {
+    animation: none;
+  }
+
+  body .teacher-shell [class*='-stat-icon'] {
+    animation: none;
+  }
+
+  body .superadmin-shell .generic-popup-icon-wrap {
+    animation: none;
+  }
+
+  body .subadmin-shell .generic-popup-icon-wrap {
+    animation: none;
+  }
+
+  body .student-shell .generic-popup-icon-wrap {
+    animation: none;
+  }
+
+  body .course-landing-page .generic-popup-icon-wrap {
+    animation: none;
+  }
+
+  body .teacher-shell .generic-popup-icon-wrap {
+    animation: none;
+  }
+}
